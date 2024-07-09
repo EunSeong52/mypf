@@ -587,3 +587,147 @@ const init = () => {
   
 
 //----------------------------------------
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  gsap.registerPlugin(ScrollTrigger)
+
+  // 이미지 애니
+  let items = document.querySelectorAll(".anime-list li")
+  items.forEach(function (el) {
+      gsap.set(".hover-img", {
+          xPercent: -50,
+          yPercent: -50
+      })
+      let image = el.querySelector(".hover-img")
+      let innerImage = el.querySelector(".hover-img img");
+      let pos = {
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2
+      }
+      let mouse = {
+          x: pos.x
+      }
+      let speed = 0.1;
+      let xSet = gsap.quickSetter(image, "x", "px") //
+      let ySet = gsap.quickSetter(image, "y", "px") //
+
+      window.addEventListener("mousemove", function (e) {
+         // console.log(e)
+          mouse.x = e.x;
+      })
+
+      gsap.ticker.add(function () { //requestAnimationFrame()
+          pos.x += (mouse.x - pos.x)
+          xSet(pos.x)
+      })
+
+      let direction = "",
+          oldx = 0,
+          lastCursorX = null,
+          cursorThreshold = 150;
+
+      let mousemovemethod = function (e) {
+          if (e.pageX < oldx && e.clientX <= lastCursorX - cursorThreshold) {
+              direction = "left"
+
+              lastCursorX = e.clientX
+              innerImage.style.transform = "rotate(-15deg)"
+
+          } else if (e.pageX > oldx && e.clientX >= lastCursorX + cursorThreshold) {
+              direction = "right"
+
+              lastCursorX = e.clientX
+              innerImage.style.transform = "rotate(15deg)"
+          }
+          oldx = e.pageX;
+      }
+
+      let mouseMoveTimer; // 마우스가 멈출 때 감지하는 변수
+
+      document.addEventListener("mousemove", function () {
+          
+
+          clearTimeout(mouseMoveTimer) //기존 타이머 지움
+          mouseMoveTimer = setTimeout(function () {
+              innerImage.style.transform = "translateX(0%) rotate(0deg)"
+          }, 100)
+      })
+
+
+      document.addEventListener("mousemove", mousemovemethod)
+
+
+
+  })
+
+
+
+  function ani() {
+      //console.log("애니메이션")
+      requestAnimationFrame(ani) //setInterval의 진화된 버전
+  }
+  ani()
+
+
+  //Mouse cursor
+  gsap.set(".ball",{xPercent:-50, yPercent:-50})
+  let ball=document.querySelector(".ball");
+  let pos={x:window.innerWidth/2,y:window.innerHeight/2}
+  let mouse={x:pos.x,y:pos.y};
+  let speed=0.08;
+
+  let xSet=gsap.quickSetter(ball,"x","px");
+  let ySet=gsap.quickSetter(ball,"y","px");
+
+  window.addEventListener("mousemove",function(e){
+      //console.log(e.x)
+      mouse.x=e.x;
+      mouse.y=e.y;
+  })
+
+  gsap.ticker.add(function(){
+      console.log(gsap.ticker.deltaRatio)
+      let dt=1.0 - Math.pow((1.0 - speed),gsap.ticker.deltaRatio())
+      pos.x +=(mouse.x - pos.x)* dt;
+      pos.y +=(mouse.y - pos.y)* dt;
+      xSet(pos.x);
+      ySet(pos.y);
+  })
+
+
+
+
+
+  // 글자 애니
+  let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let interval = null;
+  let list = document.querySelectorAll(".anime-list li")
+  
+  list.forEach(function (el) {
+     
+      el.addEventListener("mouseenter", function (event) {
+          let target_element = event.target.querySelector("h2")
+          let iteration = 0;
+          
+
+          let interval = setInterval(function () {
+              target_element.innerText = target_element.innerText
+                  .split("") 
+                  .map(function (letter, index) { 
+                      if (index < iteration) {
+                          return target_element.dataset.value[index]
+                      }
+                      return letters[Math.floor(Math.random() * 26)]
+                  })
+                  .join(""); 
+
+              if (iteration >= target_element.dataset.value.length) {
+                  clearInterval(interval)
+              }
+
+              iteration += 1 / 3; 
+          }, 20)
+      })
+
+  })
+});

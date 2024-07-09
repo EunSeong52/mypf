@@ -89,8 +89,8 @@ body {
     position: absolute;
     top: 20vh;
     left: 10vw;
-    transform: rotate(5deg);
-    animation: magic 3s linear;
+    transform: rotate(5deg); 
+    animation: magic 3s 0.5s linear;
 }
 
 .page1-obj img:nth-child(2) {
@@ -659,6 +659,9 @@ body {
     margin-top: 5px;
 }
 
+
+
+
 #page3 .card_desc {
     position: sticky;
     left: 0;
@@ -761,13 +764,34 @@ body {
     align-items: baseline;
     justify-content: flex-end;
     gap: 5px;
+    /* background-color: #E3252F;
+    border: 2px solid #fff;
+    padding-right: 50px;
+    border-radius: 50px;
+    position: relative; */
 
 }
+
+/* #page3 .card_desc .left .headwh{
+    height: 2px; width: 100%;
+    background-color: #fff;
+    position: absolute;
+    top: 60px; left: 0px;
+    
+} */
 
 #page3 .card_desc .left h3 {
     font-size: 100px;
     white-space: nowrap;
     
+}
+
+#page3 .card_desc .left h4{
+    font-size: 200px;
+    opacity: 30%;
+    position: absolute;
+    top: 12%;left: 5%;
+    font-weight: 800;
 }
 
 #page3 .card_desc .left h5 {
@@ -838,7 +862,8 @@ body {
 .anime-list .title {
     text-transform: uppercase;
     margin: 0px auto 60px;
-    width: fit-content;
+    /* width: fit-content; */
+    font-size: 60px;
     max-width: 1170px;
     text-align: center;
 }
