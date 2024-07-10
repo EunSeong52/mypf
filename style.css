@@ -21,6 +21,7 @@ body {
     overflow: hidden;
 }
 
+
 /* cursor */
 
 .cursor {
@@ -51,20 +52,34 @@ body {
 #main {
     width: 100vw;
     height: 100vh;
-    
 }
+
 
 #page1 {
     height: 100%;
     width: 100%;
     position: relative;
-    background: url(./img/back.png) no-repeat center center;
-    background-size: 100%;
-    transition: background-size .3s ease;
+    background: url(./img/ba50.png) repeat 0 0;
+    animation: bg-scrolling-reverse 2.76s infinite;
+    animation-timing-function: linear;
     overflow: hidden;
 
-
 }
+
+/* Animations */
+
+@keyframes bg-scrolling-reverse {
+    100% {
+      background-position: 100px 100px;
+    }
+  }
+  
+  @keyframes bg-scrolling {
+    0% {
+      background-position: 100px 100px;
+    }
+  }
+
 
 
 .text-line {
