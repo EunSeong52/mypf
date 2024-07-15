@@ -1085,6 +1085,7 @@ body {
 
 #page5 .port_wrap .port_desc .port1 .img {
     background-image: url(./img/pf/m1.png);
+    
 }
 
 #page5 .port_wrap .port_desc .port2 .img {
@@ -1163,6 +1164,18 @@ body {
     background-image: url(./img/pf/t2.png);
 }
 
+#page5 .port_wrap .port_desc .port .img{
+    transition: 0.5s;
+    opacity: 0.9;
+    
+}
+
+
+#page5 .port_wrap .port_desc .port .img:hover {
+    opacity: 1;
+    
+}
+
 /* //------------------------------------------- */
 
 #page6{
@@ -1179,7 +1192,7 @@ body {
     transform: translate(-50%,0);
     font-size: 80px;
     text-align: center; 
-    color: #1542A9;
+    color: rgb(21, 66, 169);
     font-family: "Fugaz One", sans-serif;
     line-height: 1; background-color: #FFBCD1;
 }
@@ -1198,7 +1211,7 @@ body {
 #page6 .skills{width: 1000px; padding: 0 20px; }
 #page6 .skill-name{font-size: 25px; 
 text-transform: uppercase;
-margin: 20px 0; color: #fff; font-family: "Fugaz One", sans-serif;
+margin: 20px 0; color: rgb(255, 255, 255); font-family: "Fugaz One", sans-serif;
 }
 
 #page6 .skill-bar{
@@ -1286,6 +1299,7 @@ margin: 20px 0; color: #fff; font-family: "Fugaz One", sans-serif;
     
     font-style: normal;
   }
+  
   
   
   .scene {
