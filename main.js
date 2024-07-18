@@ -1,3 +1,6 @@
+gsap.registerPlugin(ScrollTrigger);
+
+
 //cursor
 const coords={x:0,y:0};
 const circles=document.querySelectorAll(".circle");
@@ -58,14 +61,14 @@ animateCircles()
 
 //----------------------------------------
 
-//Theme Changer
+/* //Theme Changer
 let themeChanger = ()=>{
     let offsets=document.querySelector("#theme-changer").getBoundingClientRect();
     console.log(offsets)
     document.body.style.backgroundColor=offsets.top<0?"#fff":"#E3252F"
 }
 window.addEventListener("scroll",themeChanger)
-window.addEventListener("load",themeChanger)
+window.addEventListener("load",themeChanger) */
 
 
 //----------------------------------------
@@ -111,22 +114,26 @@ gsap.from(".line", {
 
 //----------------------------------------
 
+// page5
+
 let horSection=document.querySelectorAll('.port_desc .port');
 
 gsap.to(horSection,{
-    xPercent:-97 * (horSection.length - 1),
-    scrollTrigger:{
-        trigger:".port_desc",
-        start:"top 20%",
-        end:"+=5000",
-        scrub:1,
-        pin:true,
-    }
+  xPercent:-93.5 * (horSection.length - 1),
+  scrollTrigger:{
+    trigger:"#page5",
+    start:"110% top",
+    end:"+=500%",
+    scrub:2,
+    //pin:true,
+    //markers:true
+  }
 })
+
 
 //----------------------------------------
 
-gsap.registerPlugin(ScrollTrigger);
+// page6 skillbar
 
 
 
@@ -147,7 +154,9 @@ function animateSkills(){
 
 ScrollTrigger.create({
     trigger:"#page6",
-    start:"top 30%",
+    start:"560% top",
+    end:"+=100%",
+    //markers:true,
     onEnter:()=>{
         if(!executed){
             animateSkills();
@@ -158,6 +167,10 @@ ScrollTrigger.create({
 })
 
 //----------------------------------------
+
+
+// text
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -210,7 +223,7 @@ window.addEventListener("load",() => {
 
 //----------------------------------------
 
-
+// text
 
 
 const wrapElements = (elems, wrapType, wrapClass) => {
@@ -470,6 +483,7 @@ window.addEventListener("load",() => {
 
 //----------------------------------------
 
+//page 7
 
 
 const init = () => {
@@ -587,6 +601,8 @@ const init = () => {
   
 
 //----------------------------------------
+
+// page4
 
 document.addEventListener("DOMContentLoaded", (event) => {
   gsap.registerPlugin(ScrollTrigger)
@@ -733,4 +749,74 @@ document.addEventListener("DOMContentLoaded", (event) => {
 });
 
 //----------------------------------------
+
+// page 2-1 / 2-2
+
+
+let triggerFlipOnScroll=(galleryEl, option)=>{
+    let settings={
+        flip:{
+            absolute:false,
+            absoluteOnLeave:false,
+            scale:true,
+            simple:true,
+
+        },
+        scrollTrigger:{
+            start:"center center",
+            end:"+=300%",
+
+        }
+    }
+
+    settings=Object.assign({},settings,option) //1)
+    //console.log(settings)
+
+    let galleryCaption=galleryEl.querySelector(".caption");
+    let galleryItems=galleryEl.querySelectorAll(".gallery__item");
+
+    //L : 최종상태를 캡쳐
+    galleryEl.classList.add("gallery--switch");
+
+    //F : 초기상태를 캡쳐
+    let flipstate=Flip.getState([galleryItems,galleryCaption],{props:'filter, opacity'})
+
+    galleryEl.classList.remove("gallery--switch");
+
+    // 뒤집기 애니메이션, 타임라인 만들기
+    let tl=Flip.to(flipstate,{
+        ease:"none",
+        absolute:settings.flip.absolute,
+        absoluteOnLeave:settings.flip.absoluteOnLeave,
+        scale:settings.flip.scale,
+        simple:settings.flip.simple,
+        stagger:settings.stagger,
+        scrollTrigger:{
+            trigger:galleryEl,
+            start:settings.scrollTrigger.start,
+            end:settings.scrollTrigger.end,
+            pin:galleryEl.parentNode,
+            scrub:1
+        }
+    })
+}
+
+
+let scroll4=()=>{
+    let galleries=[
+        {id:"#gallery-1", options:{flip:{absoluteOnLeave:true,scale:false}}},
+        {id:"#gallery-8", options:{flip:{scale:false}}},
+        {id:"#gallery-9"},
+        
+    ]
+    galleries.forEach((gallery)=>{
+        let galleryElement=document.querySelector(gallery.id);
+        triggerFlipOnScroll(galleryElement,gallery.options)
+    })
+}
+scroll4();
+
+
+//-------------------------------------------------------
+
 

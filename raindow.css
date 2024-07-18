@@ -1,0 +1,15 @@
+
+
+#page8{
+    background: #13142b;
+    height: 100vh;
+}
+
+canvas {
+    opacity: .6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
